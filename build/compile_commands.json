@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/ynaru/Documents/IMAC/IMAC2/Semestre1/Programmation_Objet/projet/build",
+  "command": "C:\\Winlibs\\mingw64\\bin\\g++.exe   -g -Wall -Wextra -Wpedantic -pedantic-errors -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c C:\\Users\\ynaru\\Documents\\IMAC\\IMAC2\\Semestre1\\Programmation_Objet\\projet\\src\\main.cpp",
+  "file": "C:/Users/ynaru/Documents/IMAC/IMAC2/Semestre1/Programmation_Objet/projet/src/main.cpp",
+  "output": "CMakeFiles/main.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/ynaru/Documents/IMAC/IMAC2/Semestre1/Programmation_Objet/projet/build",
+  "command": "C:\\Winlibs\\mingw64\\bin\\g++.exe   -g -Wall -Wextra -Wpedantic -pedantic-errors -o CMakeFiles\\main.dir\\src\\Frame3D.cpp.obj -c C:\\Users\\ynaru\\Documents\\IMAC\\IMAC2\\Semestre1\\Programmation_Objet\\projet\\src\\Frame3D.cpp",
+  "file": "C:/Users/ynaru/Documents/IMAC/IMAC2/Semestre1/Programmation_Objet/projet/src/Frame3D.cpp",
+  "output": "CMakeFiles/main.dir/src/Frame3D.cpp.obj"
+}
+]
