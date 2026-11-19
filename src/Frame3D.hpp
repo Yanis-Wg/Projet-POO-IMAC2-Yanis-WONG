@@ -5,6 +5,27 @@
 #include <cmath>
 #include <cassert>
 
+template <typename T,int n>
+class Frame{
+    private:
+        std::vector<std::array<T,n>> vectorsOfFrame;
+    public:
+        // constructor
+        Frame();
+        // copy constructor
+        Frame(const Frame& frameACopier);
+        // destructor
+        ~Frame();
+        // surcharge
+        Frame& operator=(const Frame& frameACopier);
+        Frame operator+(const Frame& frameAAdditionner) const;
+        // METHODE
+        void size();
+        void add(std::vector<T> & v);
+        double quality_measure(const std::vector<T> & v) const;
+};
+
+
 class Frame3D{
     private:
         std::vector<std::array<double,3>> vectorsOfFrame;
