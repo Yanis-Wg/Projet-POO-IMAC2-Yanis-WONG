@@ -122,5 +122,33 @@ int main(){
     FR1.quality_measure(vf2);
     FR2.quality_measure(vf2);
     FR3.quality_measure(vf2);
+
+    // vec de f4
+    std::vector<bool> boolF4_1{true,false,false,false};
+    std::vector<bool> boolF4_2{false,true,false,false};
+    std::vector<bool> boolF4_3{false,false,true,false};
+    std::vector<bool> boolF4_4{false,false,false,true};
+
+    // vec de f5
+    std::vector<bool> boolF5_1{true,false,true,false};
+    std::vector<bool> boolF5_2{false,true,false,true};
+
+    Frame<bool,4> F4;
+    Frame<bool,4> F5;
+
+    F4.add(boolF4_1);
+    F4.add(boolF4_2);
+    F4.add(boolF4_3);
+    F4.add(boolF4_4);
+
+    F5.add(boolF5_1);
+    F5.add(boolF5_2);
+
+    std::cout<<"Qualite de F4 & F5"<<std::endl;
+
+    std::vector<bool> vb1{true, true, false, false};
+    F4.quality_measure(vb1);
+    F5.quality_measure(vb1);
+
     return 0;
 }

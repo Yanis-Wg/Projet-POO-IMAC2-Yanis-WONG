@@ -181,6 +181,7 @@ double Frame<T,n>::quality_measure(const std::vector<T> & v) const{
             intersection=0;
             unionSize=0;           
         }   
+        std::cout<<"La meilleur qualité est "<<bestValue<<std::endl;
         return bestValue;
     }
     // sinon on retourne 0
