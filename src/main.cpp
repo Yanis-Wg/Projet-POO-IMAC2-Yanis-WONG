@@ -1,6 +1,7 @@
 #include "Frame3D.hpp"
 
 int main(){
+    // Partie 1
     // vec de f1
     std::vector<double> f1_1{1,0,0};
     std::vector<double> f1_2{-1,0,0};
@@ -53,5 +54,45 @@ int main(){
     F1.quality_measure(v2);
     F2.quality_measure(v2);
     F3.quality_measure(v2);
+
+    // Partie 2
+    try {
+        // frame.add(v);
+    }
+    catch (const AddFrameException& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+
+    Frame<double,3> FR1;
+    Frame<double,3> FR2;
+    Frame<double,3> FR3;
+
+    FR1.add(f1_1);
+    FR1.add(f1_2);
+    FR1.add(f1_3);
+    FR1.add(f1_4);
+    FR1.add(f1_5);
+    FR1.add(f1_6);
+
+    FR1.size();
+
+    FR2.add(f2_1);
+    FR2.add(f2_2);
+    FR2.add(f2_3);
+    FR2.add(f2_4);
+
+    FR2.size();
+
+    // vec de f3
+    FR3=FR1+FR2;
+
+    FR3.size();
+    MinimalFrame<double, 3> MF1(FR1);
+    MF1.size();
+    MinimalFrame<double, 3> MF2(FR2);
+    MF2.size();
+    MinimalFrame<double, 3> MF3(FR3);
+    MF3.size();
     return 0;
 }
