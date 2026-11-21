@@ -5,6 +5,8 @@
 #include <cmath>
 #include <cassert>
 #include <exception>
+#include <type_traits>
+#include <numeric>
 class Frame3D{
     private:
         std::vector<std::array<double,3>> vectorsOfFrame;
@@ -96,10 +98,6 @@ Frame<T,n>& Frame<T,n>::operator=(const Frame& frameACopier){
 template <typename T, int n>
 Frame<T,n> Frame<T,n>::operator+(const Frame& frameAAdditionner) const{
     Frame sumFrame;
-    // sumFrame.vectorsOfFrame = this->vectorsOfFrame;
-    // sumFrame.vectorsOfFrame.insert(sumFrame.vectorsOfFrame.end(),
-    //                                frameAAdditionner.vectorsOfFrame.begin(),
-    //                                frameAAdditionner.vectorsOfFrame.end());
     if(this->vectorsOfFrame.size()>=frameAAdditionner.vectorsOfFrame.size()){
         for (size_t i = 0; i < this->vectorsOfFrame.size(); i++)
         {
@@ -112,7 +110,7 @@ Frame<T,n> Frame<T,n>::operator+(const Frame& frameAAdditionner) const{
     if(this->vectorsOfFrame.size()<frameAAdditionner.vectorsOfFrame.size()){
         for (size_t i = 0; i < frameAAdditionner.vectorsOfFrame.size(); i++)
         {
-            if(i < vectorsOfFrame.size()){
+            if(i < this->vectorsOfFrame.size()){
                 sumFrame.vectorsOfFrame.push_back(this->vectorsOfFrame[i]);
             }
             sumFrame.vectorsOfFrame.push_back(frameAAdditionner.vectorsOfFrame[i]);
@@ -240,3 +238,107 @@ MinimalFrame<T,n>::MinimalFrame(const Frame<T,n>& frame){
         ajouter=true;
     }
 };
+
+// -------------------------------------- PRIMITIVE --------------------------------------------
+
+// Partie 3
+void turn_primitive(std::vector<int> &);
+
+template <int n>
+class PrimitiveFrame : public Frame<int,n>{
+    protected:
+        int val_max;
+    public:
+        PrimitiveFrame(int val);
+        PrimitiveFrame operator+(const PrimitiveFrame<n>& frameAAdditionner) const;
+        void add(const std::vector<int>& v);
+        void add(const std::array<int,n>& v);
+};
+
+template<int n>
+PrimitiveFrame<n>::PrimitiveFrame(int val) : val_max(val){
+};
+
+class AddPrimitiveFrameException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Erreur la valeur d'une composante du vecteur depasse val_max";
+    }
+};
+
+template <int n>
+void PrimitiveFrame<n>::add(const std::vector<int>& v){
+    std::vector<int> v_temp=v;
+    std::array<int,n> tab_temp;
+    if(v.size()!=n){
+        throw AddFrameException();
+    }
+    turn_primitive(v_temp);
+    for (size_t i = 0; i < tab_temp.size(); i++)
+    {
+        // vérifie que la valMax est respecté
+        if(std::abs(v_temp[i]) <= val_max){
+            tab_temp[i]=v_temp[i];
+        }else{
+            throw AddPrimitiveFrameException();
+        }
+    }
+    this->vectorsOfFrame.push_back(tab_temp);
+}
+
+
+template <int n>
+void PrimitiveFrame<n>::add(const std::array<int,n>& v){
+    std::vector<int> v_temp;
+    for (size_t i = 0; i < v.size(); i++)
+    {
+        v_temp.push_back(v[i]);
+    }
+    
+    if(v.size()!=n){
+        throw AddFrameException();
+    }
+    turn_primitive(v_temp);
+    std::array<int,n> tab_temp;
+    for (int i = 0; i < n; i++){
+        // vérifie que la valMax est respecté
+        if(std::abs(v_temp[i]) <= val_max){
+            tab_temp[i]=v_temp[i];
+        }else{
+            throw AddPrimitiveFrameException();
+        }
+    }
+    this->vectorsOfFrame.push_back(tab_temp);
+}
+
+template <int n>
+PrimitiveFrame<n> PrimitiveFrame<n>::operator+(const PrimitiveFrame<n>& frameAAdditionner) const{
+    int minimum_val_max{};
+    if(this->val_max<frameAAdditionner.val_max){
+        minimum_val_max=this->val_max;
+    }else if(this->val_max>frameAAdditionner.val_max){
+        minimum_val_max=frameAAdditionner.val_max;  
+    }else{
+        minimum_val_max=this->val_max;
+    }
+    PrimitiveFrame<n> sumFrame(minimum_val_max);
+    if(this->vectorsOfFrame.size()>=frameAAdditionner.vectorsOfFrame.size()){
+        for (size_t i = 0; i < this->vectorsOfFrame.size(); i++)
+        {
+            if(i<frameAAdditionner.vectorsOfFrame.size()){
+                sumFrame.add(frameAAdditionner.vectorsOfFrame[i]);
+            }
+            sumFrame.add(this->vectorsOfFrame[i]);
+        }
+    }
+    if(this->vectorsOfFrame.size()<frameAAdditionner.vectorsOfFrame.size()){
+        for (size_t i = 0; i < frameAAdditionner.vectorsOfFrame.size(); i++)
+        {
+            if(i < this->vectorsOfFrame.size()){
+                sumFrame.add(this->vectorsOfFrame[i]);
+            }
+            sumFrame.add(frameAAdditionner.vectorsOfFrame[i]);
+        }
+    }
+    return sumFrame;
+}

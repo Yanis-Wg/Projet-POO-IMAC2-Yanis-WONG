@@ -1,5 +1,4 @@
 #include "Frame3D.hpp"
-
 int main(){
     // Partie 1
     // vec de f1
@@ -150,5 +149,6 @@ int main(){
     F4.quality_measure(vb1);
     F5.quality_measure(vb1);
 
+    // PARTIE 3
     return 0;
 }

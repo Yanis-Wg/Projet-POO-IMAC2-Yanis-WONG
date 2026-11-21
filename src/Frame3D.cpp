@@ -1,5 +1,5 @@
 #include "Frame3D.hpp"
-#include <type_traits>
+
 // constructor
 Frame3D::Frame3D() = default;
 
@@ -99,3 +99,16 @@ double Frame3D::quality_measure(const std::vector<double> & v) const{
     return maxQuality;
 }
 
+void turn_primitive(std::vector<int>& v){
+    assert(!v.empty());
+    int pgcd=v[0];
+    for (size_t i = 1; i < v.size(); i++)
+    {
+        pgcd=std::gcd(pgcd,v[i]);
+    }
+    assert(pgcd!=0);
+    for (size_t i = 0; i < v.size(); i++)
+    {
+        v[i]=v[i]/pgcd;
+    }
+}
