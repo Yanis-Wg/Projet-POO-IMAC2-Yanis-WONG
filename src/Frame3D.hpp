@@ -182,31 +182,29 @@ double Frame<T,n>::quality_measure(const std::vector<T> & v) const{
         std::cout<<"La meilleur qualité est "<<bestValue<<std::endl;
         return bestValue;
     }
-    // sinon on retourne 0
     else {
         assert(v.size()==n);
         
         double maxQuality{-2};
-        double produitScalaire{};
-        double produitNorme{};
-        double normeVect=sqrt(pow(v[0],2)+pow(v[1],2)+pow(v[2],2));
-        double normeVecOfFrame{};
-
-        // on vérifie pas assertion que le vecteur v est non nul
-        assert(normeVect!=0);
-
-        size_t tailleFrame3D= this->vectorsOfFrame.size();
-        for (size_t i = 0; i < tailleFrame3D; i++)
-        {
-            produitScalaire=v[0]*this->vectorsOfFrame[i][0]+v[1]*this->vectorsOfFrame[i][1]+v[2]*this->vectorsOfFrame[i][2];
-            normeVecOfFrame=sqrt(pow(this->vectorsOfFrame[i][0],2)+pow(this->vectorsOfFrame[i][1],2)+pow(this->vectorsOfFrame[i][2],2));
-            assert(normeVecOfFrame!=0);
-            produitNorme=normeVect*normeVecOfFrame;
-            if((produitScalaire/produitNorme)>maxQuality){
-                maxQuality=produitScalaire/produitNorme;
+        double normeVectCarree{};
+        for (size_t j = 0; j < n; j++) {
+            normeVectCarree+=static_cast<double>(v[j])*v[j];
+        }
+        assert(normeVectCarree !=0);
+        for (size_t i = 0; i < this->vectorsOfFrame.size(); i++) {
+            double produitScalaire{};
+            double normeVecCarree{};
+            for (size_t j = 0; j < n; j++) {
+                produitScalaire+=static_cast<double>(v[j])*this->vectorsOfFrame[i][j];
+                normeVecCarree+=static_cast<double>(this->vectorsOfFrame[i][j])*this->vectorsOfFrame[i][j];
+            }
+            assert(normeVecCarree != 0);
+            double quality=produitScalaire/sqrt(normeVectCarree*normeVecCarree);
+            if (quality>maxQuality) {
+                maxQuality=quality;
             }
         }
-        std::cout<<"La meilleur qualité est "<<maxQuality<<std::endl;
+        std::cout <<"La meilleure qualité est "<<maxQuality<<std::endl;
         return maxQuality;
     }
 }

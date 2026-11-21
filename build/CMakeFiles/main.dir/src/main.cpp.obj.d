@@ -169,4 +169,8 @@ CMakeFiles/main.dir/src/main.cpp.obj: \
  C:/Winlibs/mingw64/include/c++/14.2.0/tr1/poly_laguerre.tcc \
  C:/Winlibs/mingw64/include/c++/14.2.0/tr1/riemann_zeta.tcc \
  C:/Winlibs/mingw64/include/c++/14.2.0/cassert \
- C:/Winlibs/mingw64/x86_64-w64-mingw32/include/assert.h
+ C:/Winlibs/mingw64/x86_64-w64-mingw32/include/assert.h \
+ C:/Winlibs/mingw64/include/c++/14.2.0/numeric \
+ C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_numeric.h \
+ C:/Winlibs/mingw64/include/c++/14.2.0/pstl/glue_numeric_defs.h \
+ C:/Winlibs/mingw64/include/c++/14.2.0/pstl/execution_defs.h

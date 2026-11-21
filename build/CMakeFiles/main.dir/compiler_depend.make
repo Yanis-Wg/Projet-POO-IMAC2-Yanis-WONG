@@ -229,6 +229,7 @@ CMakeFiles/main.dir/src/main.cpp.obj: C:/Users/ynaru/Documents/IMAC/IMAC2/Semest
   C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_iterator.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_iterator_base_funcs.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_iterator_base_types.h \
+  C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_numeric.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_pair.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_uninitialized.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/bits/stl_vector.h \
@@ -268,7 +269,10 @@ CMakeFiles/main.dir/src/main.cpp.obj: C:/Users/ynaru/Documents/IMAC/IMAC2/Semest
   C:/Winlibs/mingw64/include/c++/14.2.0/istream \
   C:/Winlibs/mingw64/include/c++/14.2.0/limits \
   C:/Winlibs/mingw64/include/c++/14.2.0/new \
+  C:/Winlibs/mingw64/include/c++/14.2.0/numeric \
   C:/Winlibs/mingw64/include/c++/14.2.0/ostream \
+  C:/Winlibs/mingw64/include/c++/14.2.0/pstl/execution_defs.h \
+  C:/Winlibs/mingw64/include/c++/14.2.0/pstl/glue_numeric_defs.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/pstl/pstl_config.h \
   C:/Winlibs/mingw64/include/c++/14.2.0/stdexcept \
   C:/Winlibs/mingw64/include/c++/14.2.0/stdlib.h \

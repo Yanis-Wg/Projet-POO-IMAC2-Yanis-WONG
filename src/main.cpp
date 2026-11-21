@@ -150,5 +150,30 @@ int main(){
     F5.quality_measure(vb1);
 
     // PARTIE 3
+    std::vector<int> p1{1,0};
+    std::vector<int> p2{-1,0};
+    std::vector<int> p3{0,1};
+    std::vector<int> p4{0,-1};
+
+    PrimitiveFrame<2> PF(3);
+
+    for (int x = -3; x <= 3; x++) {
+        for (int y = -3; y <= 3; y++) {
+            if (std::gcd(std::abs(x), std::abs(y)) == 1) {
+                std::vector<int> v = {x, y};
+                PF.add(v);
+            }
+        }
+    }
+
+    std::vector<int> PF2v{-2,2};
+    std::cout<<"Qualite de PF avec vecteur -2,2"<<std::endl;
+    PF.quality_measure(PF2v);
+    PrimitiveFrame<2> F6(1);
+    F6.add(p1);
+    F6.add(p2);
+    F6.add(p3);
+    F6.add(p4);
+    F6.quality_measure(PF2v);
     return 0;
 }
